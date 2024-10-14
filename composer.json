@@ -1,0 +1,31 @@
+{
+    "name": "tuanviet/quick-component",
+    "description": "A Laravel package to create a quick component",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.27",
+        "spatie/laravel-permission": "^6.1",
+        "spatie/laravel-activitylog": "^4.7"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "TuanViet\\QuickComponent\\": "src"
+        }
+    },
+    "autoload-dev": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TuanViet\\QuickComponent\\QuickComponentServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "format": "php-cs-fixer fix --allow-risky=yes",
+        "analyse": "phpstan analyse"
+    }
+}

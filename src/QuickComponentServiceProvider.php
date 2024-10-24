@@ -1,6 +1,6 @@
 <?php
 
-namespace TuanViet\QuickComponent;
+namespace Viettuans\QuickComponent;
 
 use Illuminate\Support\ServiceProvider;
 

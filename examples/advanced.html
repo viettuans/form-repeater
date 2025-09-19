@@ -12,38 +12,26 @@
             padding: 20px;
             margin: 15px 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            transition: all 0.3s ease;
-        }
-        .form-repeat-box-item:hover {
-            border-color: #007bff;
-            box-shadow: 0 5px 15px rgba(0,123,255,0.1);
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1>FormRepeater - Advanced Example</h1>
-        <p class="lead">Demonstrates callbacks, validation, and advanced features</p>
+        <h1>Advanced Task Manager</h1>
+        <p class="lead">With callbacks, validation, and custom features</p>
 
         <div class="alert alert-info">
-            <strong>Features demonstrated:</strong>
-            <ul class="mb-0">
-                <li>Custom callbacks (onBeforeAdd, onAfterAdd, onBeforeDelete)</li>
-                <li>Automatic focus on new fields</li>
-                <li>Confirmation before deletion</li>
-                <li>Custom animations</li>
-                <li>Debug mode enabled</li>
-            </ul>
+            <strong>Features:</strong> Custom callbacks, confirmation dialogs, auto-focus, debug mode
         </div>
 
-        <form id="advanced-form">
+        <form id="task-form">
             <!-- Template -->
             <div id="task-template" class="form-repeat-box-item" style="display: none;">
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Task Name</label>
                         <input type="text" class="form-control form-repeat-field-ipt" 
-                               data-field-name="task" placeholder="Enter task name" required>
+                               data-field-name="task" placeholder="Enter task" required>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Priority</label>
@@ -57,8 +45,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label">Due Date</label>
-                        <input type="date" class="form-control form-repeat-field-ipt" 
-                               data-field-name="due_date" required>
+                        <input type="date" class="form-control form-repeat-field-ipt" data-field-name="due_date">
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="button" class="btn btn-danger form-repeat-delete-btn w-100">
@@ -67,7 +54,7 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-10">
+                    <div class="col-12">
                         <label class="form-label">Description</label>
                         <textarea class="form-control form-repeat-field-ipt" 
                                   data-field-name="description" rows="2" 
@@ -90,15 +77,7 @@
 
             <hr class="my-4">
             <button type="submit" class="btn btn-primary btn-lg">Submit Tasks</button>
-            <button type="button" class="btn btn-info btn-lg ms-2" onclick="showFormData()">
-                Preview Data
-            </button>
         </form>
-
-        <div id="output" class="mt-4" style="display: none;">
-            <h4>Form Data:</h4>
-            <pre id="data-preview" class="bg-light p-3 border rounded"></pre>
-        </div>
     </div>
 
     <!-- Scripts -->
@@ -106,82 +85,35 @@
     <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 
     <script>
-        // Initialize FormRepeater with advanced options
+        // Advanced configuration with callbacks
         const taskRepeater = new FormRepeater({
-            debugMode: true, // Enable console logging
+            debugMode: true,
             
             onBeforeAdd: function($button) {
-                console.log('About to add new task...');
-                
-                // Limit to maximum 5 tasks
                 const currentTasks = $('#tasks-list .form-repeat-box-item').length;
                 if (currentTasks >= 5) {
                     alert('Maximum 5 tasks allowed!');
-                    return false; // Cancel addition
+                    return false;
                 }
-                
-                return true; // Allow addition
+                return true;
             },
             
-            onAfterAdd: function($newElement, $button) {
-                console.log('New task added successfully!');
-                
-                // Auto-focus on first input
+            onAfterAdd: function($newElement) {
+                // Auto-focus and set default date
                 $newElement.find('input:first').focus();
-                
-                // Add fade-in animation
-                $newElement.hide().fadeIn(500);
-                
-                // Set default due date to tomorrow
                 const tomorrow = new Date();
                 tomorrow.setDate(tomorrow.getDate() + 1);
                 $newElement.find('input[type="date"]').val(tomorrow.toISOString().split('T')[0]);
-                
-                // Update task counter
-                updateTaskCounter();
+                $newElement.hide().fadeIn(300);
             },
             
-            onBeforeDelete: function($itemToDelete, $button) {
-                // Confirm before deletion
-                return confirm('Are you sure you want to remove this task?');
+            onBeforeDelete: function($item) {
+                return confirm('Remove this task?');
             },
             
-            onAfterDelete: function($button) {
+            onAfterDelete: function() {
                 console.log('Task removed successfully!');
-                updateTaskCounter();
             }
-        });
-
-        function updateTaskCounter() {
-            const count = $('#tasks-list .form-repeat-box-item').length;
-            const button = $('.form-repeat-add-btn');
-            button.html(`Add New Task (${count}/5)`);
-        }
-
-        function showFormData() {
-            const form = document.getElementById('advanced-form');
-            const formData = new FormData(form);
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                if (data[key]) {
-                    if (Array.isArray(data[key])) {
-                        data[key].push(value);
-                    } else {
-                        data[key] = [data[key], value];
-                    }
-                } else {
-                    data[key] = value;
-                }
-            }
-            
-            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
-            document.getElementById('output').style.display = 'block';
-        }
-
-        // Initialize counter on page load
-        $(document).ready(function() {
-            updateTaskCounter();
         });
     </script>
 </body>

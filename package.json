@@ -1,18 +1,15 @@
 {
   "name": "form-repeater-js",
   "version": "1.0.0",
-  "description": "A lightweight, flexible JavaScript component for dynamically adding and removing form field groups",
+  "description": "A lightweight JavaScript component for dynamically adding and removing form field groups",
   "main": "public/formix.js",
   "files": [
     "public/formix.js",
     "README.md",
-    "FORMREPEATER_USAGE.md",
-    "demo.html"
+    "LICENSE"
   ],
   "scripts": {
-    "test": "echo \"No tests specified yet\" && exit 0",
-    "demo": "open demo.html",
-    "build": "echo \"No build process needed - vanilla JS\" && exit 0"
+    "demo": "open demo.html"
   },
   "repository": {
     "type": "git",
@@ -26,12 +23,7 @@
     "form-fields",
     "javascript",
     "ui-component",
-    "form-builder",
-    "dynamic-forms",
-    "repeatable-fields",
-    "form-groups",
-    "frontend",
-    "web-component"
+    "form-builder"
   ],
   "author": "Tuan Dang <viettuans@gmail.com>",
   "license": "MIT",
@@ -41,16 +33,5 @@
   "homepage": "https://github.com/viettuans/form-repeater#readme",
   "peerDependencies": {
     "jquery": ">=3.0.0"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie <= 11"
-  ],
-  "devDependencies": {},
-  "dependencies": {}
+  }
 }

@@ -17,29 +17,26 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>FormRepeater - Basic Example</h1>
-        <p class="lead">A simple contact form with repeatable fields</p>
+        <h1>Basic Contact Form</h1>
+        <p class="lead">Add multiple contacts dynamically</p>
 
         <form>
             <!-- Template (hidden) -->
             <div id="contact-template" class="form-repeat-box-item" style="display: none;">
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Name</label>
                         <input type="text" class="form-control form-repeat-field-ipt" 
-                               data-field-name="name" placeholder="Enter name" required>
+                               data-field-name="name" placeholder="Name" required>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">Email</label>
                         <input type="email" class="form-control form-repeat-field-ipt" 
-                               data-field-name="email" placeholder="Enter email" required>
+                               data-field-name="email" placeholder="Email" required>
                     </div>
                     <div class="col-md-2">
-                        <label class="form-label">Phone</label>
                         <input type="tel" class="form-control form-repeat-field-ipt" 
                                data-field-name="phone" placeholder="Phone">
                     </div>
-                    <div class="col-md-2 d-flex align-items-end">
+                    <div class="col-md-2">
                         <button type="button" class="btn btn-danger form-repeat-delete-btn w-100">
                             Remove
                         </button>
@@ -47,7 +44,7 @@
                 </div>
             </div>
 
-            <!-- Container for repeated items -->
+            <!-- Container -->
             <div id="contacts-list"></div>
 
             <!-- Add button -->

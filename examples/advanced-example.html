@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormRepeater - Advanced Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-repeat-box-item {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transition: all 0.3s ease;
+        }
+        .form-repeat-box-item:hover {
+            border-color: #007bff;
+            box-shadow: 0 5px 15px rgba(0,123,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>FormRepeater - Advanced Example</h1>
+        <p class="lead">Demonstrates callbacks, validation, and advanced features</p>
+
+        <div class="alert alert-info">
+            <strong>Features demonstrated:</strong>
+            <ul class="mb-0">
+                <li>Custom callbacks (onBeforeAdd, onAfterAdd, onBeforeDelete)</li>
+                <li>Automatic focus on new fields</li>
+                <li>Confirmation before deletion</li>
+                <li>Custom animations</li>
+                <li>Debug mode enabled</li>
+            </ul>
+        </div>
+
+        <form id="advanced-form">
+            <!-- Template -->
+            <div id="task-template" class="form-repeat-box-item" style="display: none;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Task Name</label>
+                        <input type="text" class="form-control form-repeat-field-ipt" 
+                               data-field-name="task" placeholder="Enter task name" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Priority</label>
+                        <select class="form-select form-repeat-field-ipt" data-field-name="priority" required>
+                            <option value="">Select priority</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Due Date</label>
+                        <input type="date" class="form-control form-repeat-field-ipt" 
+                               data-field-name="due_date" required>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger form-repeat-delete-btn w-100">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-10">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control form-repeat-field-ipt" 
+                                  data-field-name="description" rows="2" 
+                                  placeholder="Task description..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container -->
+            <div id="tasks-list"></div>
+
+            <!-- Add button -->
+            <button type="button" 
+                    class="btn btn-success btn-lg form-repeat-add-btn"
+                    data-group-name="tasks"
+                    data-box-default="#task-template"
+                    data-box-list="#tasks-list">
+                Add New Task
+            </button>
+
+            <hr class="my-4">
+            <button type="submit" class="btn btn-primary btn-lg">Submit Tasks</button>
+            <button type="button" class="btn btn-info btn-lg ms-2" onclick="showFormData()">
+                Preview Data
+            </button>
+        </form>
+
+        <div id="output" class="mt-4" style="display: none;">
+            <h4>Form Data:</h4>
+            <pre id="data-preview" class="bg-light p-3 border rounded"></pre>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../public/formix.js"></script>
+
+    <script>
+        // Initialize FormRepeater with advanced options
+        const taskRepeater = new FormRepeater({
+            debugMode: true, // Enable console logging
+            
+            onBeforeAdd: function($button) {
+                console.log('About to add new task...');
+                
+                // Limit to maximum 5 tasks
+                const currentTasks = $('#tasks-list .form-repeat-box-item').length;
+                if (currentTasks >= 5) {
+                    alert('Maximum 5 tasks allowed!');
+                    return false; // Cancel addition
+                }
+                
+                return true; // Allow addition
+            },
+            
+            onAfterAdd: function($newElement, $button) {
+                console.log('New task added successfully!');
+                
+                // Auto-focus on first input
+                $newElement.find('input:first').focus();
+                
+                // Add fade-in animation
+                $newElement.hide().fadeIn(500);
+                
+                // Set default due date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                $newElement.find('input[type="date"]').val(tomorrow.toISOString().split('T')[0]);
+                
+                // Update task counter
+                updateTaskCounter();
+            },
+            
+            onBeforeDelete: function($itemToDelete, $button) {
+                // Confirm before deletion
+                return confirm('Are you sure you want to remove this task?');
+            },
+            
+            onAfterDelete: function($button) {
+                console.log('Task removed successfully!');
+                updateTaskCounter();
+            }
+        });
+
+        function updateTaskCounter() {
+            const count = $('#tasks-list .form-repeat-box-item').length;
+            const button = $('.form-repeat-add-btn');
+            button.html(`Add New Task (${count}/5)`);
+        }
+
+        function showFormData() {
+            const form = document.getElementById('advanced-form');
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            document.getElementById('data-preview').textContent = JSON.stringify(data, null, 2);
+            document.getElementById('output').style.display = 'block';
+        }
+
+        // Initialize counter on page load
+        $(document).ready(function() {
+            updateTaskCounter();
+        });
+    </script>
+</body>
+</html>

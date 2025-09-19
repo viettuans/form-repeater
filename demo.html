@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormRepeater - Live Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .demo-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        .demo-section {
+            margin-bottom: 50px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+        .form-repeat-box-item {
+            background: white;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .form-repeat-box-item:hover {
+            border-color: #007bff;
+            box-shadow: 0 5px 15px rgba(0,123,255,0.1);
+        }
+        .btn-add {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40,167,69,0.3);
+            color: white;
+        }
+        .btn-remove {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-remove:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(220,53,69,0.3);
+            color: white;
+        }
+        .feature-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .code-preview {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        .demo-output {
+            background: #e8f5e8;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 0.9em;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="demo-container">
+            <div class="demo-header">
+                <h1><i class="fas fa-sync-alt"></i> FormRepeater Live Demo</h1>
+                <p class="lead">Interactive examples to showcase FormRepeater capabilities</p>
+                <div class="mt-3">
+                    <span class="feature-badge"><i class="fas fa-rocket"></i> Easy to Use</span>
+                    <span class="feature-badge"><i class="fas fa-cogs"></i> Highly Configurable</span>
+                    <span class="feature-badge"><i class="fas fa-mobile-alt"></i> Responsive</span>
+                    <span class="feature-badge"><i class="fas fa-code"></i> Framework Agnostic</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo 1: Contact Form -->
+        <div class="demo-container">
+            <div class="demo-section">
+                <h3><i class="fas fa-address-book text-primary"></i> Demo 1: Contact Management</h3>
+                <p>Add multiple contacts with name, email, and phone. Perfect for contact forms or team member management.</p>
+                
+                <form id="contact-form">
+                    <!-- Contact Template -->
+                    <div id="contact-template" class="form-repeat-box-item" style="display: none;">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <label class="form-label"><i class="fas fa-user"></i> Name</label>
+                                <input type="text" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="name" placeholder="Enter full name" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                                <input type="email" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="email" placeholder="Enter email" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><i class="fas fa-phone"></i> Phone</label>
+                                <input type="tel" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="button" class="btn btn-remove form-repeat-delete-btn w-100">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacts Container -->
+                    <div id="contacts-list"></div>
+
+                    <!-- Add Button -->
+                    <button type="button" 
+                            class="btn btn-add form-repeat-add-btn"
+                            data-group-name="contacts"
+                            data-box-default="#contact-template"
+                            data-box-list="#contacts-list">
+                        <i class="fas fa-plus"></i> Add New Contact
+                    </button>
+
+                    <button type="button" class="btn btn-primary ms-3" onclick="showFormData('contact-form')">
+                        <i class="fas fa-eye"></i> Preview Form Data
+                    </button>
+                </form>
+
+                <div id="contact-output" class="demo-output" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Demo 2: Product Variants -->
+        <div class="demo-container">
+            <div class="demo-section">
+                <h3><i class="fas fa-box text-success"></i> Demo 2: Product Variants</h3>
+                <p>Manage product variants with different sizes, colors, and prices. Great for e-commerce applications.</p>
+                
+                <form id="product-form">
+                    <!-- Product Variant Template -->
+                    <div id="variant-template" class="form-repeat-box-item" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fas fa-expand-arrows-alt"></i> Size</label>
+                                <select class="form-select form-repeat-field-ipt" data-field-name="size" required>
+                                    <option value="">Select size</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label"><i class="fas fa-palette"></i> Color</label>
+                                <input type="text" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="color" placeholder="e.g., Red, Blue" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fas fa-dollar-sign"></i> Price</label>
+                                <input type="number" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="price" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fas fa-boxes"></i> Stock</label>
+                                <input type="number" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="stock" placeholder="0" min="0" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label"><i class="fas fa-image"></i> SKU</label>
+                                <input type="text" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="sku" placeholder="SKU-001">
+                            </div>
+                            <div class="col-md-1 d-flex align-items-end">
+                                <button type="button" class="btn btn-remove form-repeat-delete-btn w-100">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Variants Container -->
+                    <div id="variants-list"></div>
+
+                    <!-- Add Button -->
+                    <button type="button" 
+                            class="btn btn-add form-repeat-add-btn"
+                            data-group-name="variants"
+                            data-box-default="#variant-template"
+                            data-box-list="#variants-list">
+                        <i class="fas fa-plus"></i> Add Product Variant
+                    </button>
+
+                    <button type="button" class="btn btn-primary ms-3" onclick="showFormData('product-form')">
+                        <i class="fas fa-eye"></i> Preview Form Data
+                    </button>
+                </form>
+
+                <div id="product-output" class="demo-output" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Demo 3: Advanced with Callbacks -->
+        <div class="demo-container">
+            <div class="demo-section">
+                <h3><i class="fas fa-cog text-warning"></i> Demo 3: Advanced Features</h3>
+                <p>Demonstrates callbacks, validation, and advanced customization options.</p>
+                
+                <form id="advanced-form">
+                    <!-- Advanced Template -->
+                    <div id="advanced-template" class="form-repeat-box-item" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-label">Task Name</label>
+                                <input type="text" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="task" placeholder="Enter task name" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select form-repeat-field-ipt" data-field-name="priority" required>
+                                    <option value="">Select priority</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Due Date</label>
+                                <input type="date" class="form-control form-repeat-field-ipt" 
+                                       data-field-name="due_date" required>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="button" class="btn btn-remove form-repeat-delete-btn w-100">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-10">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control form-repeat-field-ipt" 
+                                          data-field-name="description" rows="2" 
+                                          placeholder="Task description..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Container -->
+                    <div id="advanced-list"></div>
+
+                    <!-- Add Button -->
+                    <button type="button" 
+                            class="btn btn-add form-repeat-add-btn"
+                            data-group-name="tasks"
+                            data-box-default="#advanced-template"
+                            data-box-list="#advanced-list">
+                        <i class="fas fa-plus"></i> Add New Task
+                    </button>
+
+                    <button type="button" class="btn btn-primary ms-3" onclick="showFormData('advanced-form')">
+                        <i class="fas fa-eye"></i> Preview Form Data
+                    </button>
+                </form>
+
+                <div id="advanced-output" class="demo-output" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Usage Instructions -->
+        <div class="demo-container">
+            <h3><i class="fas fa-code text-info"></i> How to Use</h3>
+            <div class="code-preview">
+&lt;!-- 1. Include jQuery and FormRepeater --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.6.0.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"&gt;&lt;/script&gt;
+
+&lt;!-- 2. Create your template (hidden) --&gt;
+&lt;div id="my-template" class="form-repeat-box-item" style="display: none;"&gt;
+    &lt;input type="text" class="form-repeat-field-ipt" data-field-name="name"&gt;
+    &lt;button class="form-repeat-delete-btn"&gt;Remove&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 3. Create container --&gt;
+&lt;div id="my-list"&gt;&lt;/div&gt;
+
+&lt;!-- 4. Create add button --&gt;
+&lt;button class="form-repeat-add-btn" 
+        data-group-name="items"
+        data-box-default="#my-template" 
+        data-box-list="#my-list"&gt;
+    Add Item
+&lt;/button&gt;
+
+&lt;!-- 5. That's it! FormRepeater auto-initializes --&gt;
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="FORMREPEATER_USAGE.md" class="btn btn-outline-primary btn-lg me-3">
+                    <i class="fas fa-book"></i> Full Documentation
+                </a>
+                <a href="https://github.com/yourusername/quick-component" class="btn btn-outline-dark btn-lg">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/formix.js"></script>
+
+    <script>
+        // Initialize FormRepeater with advanced features
+        const advancedRepeater = new FormRepeater({
+            debugMode: true,
+            onBeforeAdd: function($button) {
+                console.log('About to add new item...');
+                return true;
+            },
+            onAfterAdd: function($newElement, $button) {
+                console.log('New item added successfully!');
+                
+                // Auto-focus on first input
+                $newElement.find('input:first, select:first').focus();
+                
+                // Add some visual feedback
+                $newElement.hide().fadeIn(300);
+                
+                // Set default due date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                $newElement.find('input[type="date"]').val(tomorrow.toISOString().split('T')[0]);
+            },
+            onBeforeDelete: function($item, $button) {
+                return confirm('Are you sure you want to remove this item?');
+            },
+            onAfterDelete: function($button) {
+                console.log('Item removed successfully!');
+            }
+        });
+
+        // Function to show form data
+        function showFormData(formId) {
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            const outputId = formId.replace('-form', '-output');
+            const outputDiv = document.getElementById(outputId);
+            
+            outputDiv.innerHTML = '<h5>Form Data Preview:</h5><pre>' + 
+                                 JSON.stringify(data, null, 2) + '</pre>';
+            outputDiv.style.display = 'block';
+        }
+
+        // Add some demo data on page load
+        $(document).ready(function() {
+            console.log('FormRepeater Demo loaded successfully!');
+            console.log('Try adding some items and see the magic happen! ✨');
+        });
+    </script>
+</body>
+</html>

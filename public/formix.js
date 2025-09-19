@@ -208,7 +208,7 @@
 
     // Auto-initialize with default options when DOM is ready
     $(document).ready(function() {
-        if (!global.FormRepeater.instance) {
+        if (!global.FormRepeater.preventAutoInit && !global.FormRepeater.instance) {
             global.FormRepeater.instance = new FormRepeater();
         }
     });

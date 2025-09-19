@@ -1,0 +1,12 @@
+# Files to exclude from NPM package
+vendor/
+composer.json
+composer.lock
+config/
+resources/
+src/
+examples/
+.gitignore
+*.md
+!README.md
+!FORMREPEATER_USAGE.md

@@ -10,7 +10,7 @@ FormRepeater can be easily integrated into your project using CDN links. This is
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Include FormRepeater from GitHub CDN -->
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 ```
 
 ### Option 2: Specific Version
@@ -80,7 +80,7 @@ Copy and paste this template to get started immediately:
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
     
     <!-- Optional: Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -92,7 +92,7 @@ Copy and paste this template to get started immediately:
 
 ```html
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 
 <script>
 // Custom configuration
@@ -139,7 +139,7 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 
 <!-- Avoid: Latest version (can break unexpectedly) -->
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 ```
 
 ### Available Version Formats
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
 ### Check CDN Status
 - jsDelivr Status: https://www.jsdelivr.com/network
-- Check if file is available: https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js
+- Check if file is available: https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js
 
 ### Fallback Strategy
 ```html
@@ -203,7 +203,7 @@ if (typeof FormRepeater === 'undefined') {
 ### Development
 ```html
 <!-- Use latest version with debug mode -->
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 <script>
 const repeater = new FormRepeater({ debugMode: true });
 </script>

@@ -21,7 +21,7 @@ A lightweight, flexible JavaScript component for dynamically adding and removing
 <!-- Include jQuery first -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Include FormRepeater -->
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 ```
 
 ### 2. Create your HTML structure
@@ -68,7 +68,7 @@ Check out the [live demo](demo.html) to see FormRepeater in action with differen
 
 ### Option 1: CDN (Recommended)
 ```html
-<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@master/public/formix.js"></script>
 ```
 
 ### Option 2: Download

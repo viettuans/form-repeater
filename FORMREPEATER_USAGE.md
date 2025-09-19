@@ -18,7 +18,7 @@ Make sure you have jQuery loaded before including FormRepeater:
 
 ```html
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 ```
 
 ### 2. Basic HTML Structure
@@ -227,7 +227,7 @@ const repeater = FormRepeater.init({
 <head>
     <title>Contact Repeater</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="public/formix.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 </head>
 <body>
     <form>

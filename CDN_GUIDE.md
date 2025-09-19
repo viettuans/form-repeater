@@ -10,19 +10,19 @@ FormRepeater can be easily integrated into your project using CDN links. This is
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Include FormRepeater from GitHub CDN -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 ```
 
 ### Option 2: Specific Version
 ```html
 <!-- Include specific version (recommended for production) -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 ```
 
 ### Option 3: Latest Release
 ```html
 <!-- Always get the latest release -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@latest/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@latest/public/formix.js"></script>
 ```
 
 ## 📋 Complete HTML Template
@@ -80,7 +80,7 @@ Copy and paste this template to get started immediately:
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
     
     <!-- Optional: Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -92,7 +92,7 @@ Copy and paste this template to get started immediately:
 
 ```html
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 
 <script>
 // Custom configuration
@@ -114,7 +114,7 @@ $(document).ready(function() {
 ## 🌐 CDN Providers
 
 ### jsDelivr (Recommended)
-- **URL Format**: `https://cdn.jsdelivr.net/gh/yourusername/quick-component@version/public/formix.js`
+- **URL Format**: `https://cdn.jsdelivr.net/gh/viettuans/form-repeater@version/public/formix.js`
 - **Features**: Fast global CDN, automatic minification, version control
 - **Uptime**: 99.9%
 - **Cache**: Long-term caching
@@ -123,12 +123,12 @@ $(document).ready(function() {
 
 #### GitHub Raw (Not recommended for production)
 ```html
-<script src="https://raw.githubusercontent.com/yourusername/quick-component/main/public/formix.js"></script>
+<script src="https://raw.githubusercontent.com/viettuans/form-repeater/main/public/formix.js"></script>
 ```
 
 #### GitHack (For development)
 ```html
-<script src="https://raw.githack.com/yourusername/quick-component/main/public/formix.js"></script>
+<script src="https://raw.githack.com/viettuans/form-repeater/main/public/formix.js"></script>
 ```
 
 ## 📦 Version Management
@@ -136,10 +136,10 @@ $(document).ready(function() {
 ### Use Specific Versions in Production
 ```html
 <!-- Good: Specific version -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 
 <!-- Avoid: Latest version (can break unexpectedly) -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 ```
 
 ### Available Version Formats
@@ -152,30 +152,30 @@ $(document).ready(function() {
 
 ### 1. Use Integrity Checks
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js" 
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js" 
         integrity="sha384-HASH_HERE" 
         crossorigin="anonymous"></script>
 ```
 
 ### 2. Preload for Better Performance
 ```html
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js" as="script">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js" as="script">
 ```
 
 ### 3. Use Async Loading
 ```html
-<script async src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script async src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 ```
 
 ## 🔍 CDN Status and Monitoring
 
 ### Check CDN Status
 - jsDelivr Status: https://www.jsdelivr.com/network
-- Check if file is available: https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js
+- Check if file is available: https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js
 
 ### Fallback Strategy
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 <script>
 // Fallback to local file if CDN fails
 if (typeof FormRepeater === 'undefined') {
@@ -189,13 +189,13 @@ if (typeof FormRepeater === 'undefined') {
 ### For China
 ```html
 <!-- Use Chinese CDN mirror -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 ```
 
 ### For Europe
 ```html
 <!-- European edge servers automatically used -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 ```
 
 ## 🛠️ Development vs Production
@@ -203,7 +203,7 @@ if (typeof FormRepeater === 'undefined') {
 ### Development
 ```html
 <!-- Use latest version with debug mode -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@main/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@main/public/formix.js"></script>
 <script>
 const repeater = new FormRepeater({ debugMode: true });
 </script>
@@ -212,7 +212,7 @@ const repeater = new FormRepeater({ debugMode: true });
 ### Production
 ```html
 <!-- Use specific version, no debug -->
-<script src="https://cdn.jsdelivr.net/gh/yourusername/quick-component@v1.0.0/public/formix.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/viettuans/form-repeater@v1.0.0/public/formix.js"></script>
 <script>
 const repeater = new FormRepeater({ debugMode: false });
 </script>

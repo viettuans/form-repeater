@@ -27,9 +27,9 @@ Pull requests are the best way to propose changes to the codebase. We actively w
 
 In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using GitHub's [issue tracker](https://github.com/yourusername/quick-component/issues)
+## Report bugs using GitHub's [issue tracker](https://github.com/viettuans/form-repeater/issues)
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/yourusername/quick-component/issues/new).
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/viettuans/form-repeater/issues/new).
 
 ## Write bug reports with detail, background, and sample code
 
@@ -47,8 +47,8 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 1. Fork and clone the repository
 ```bash
-git clone https://github.com/yourusername/quick-component.git
-cd quick-component
+git clone https://github.com/viettuans/form-repeater.git
+cd form-repeater
 ```
 
 2. Open `demo.html` in your browser to test changes
